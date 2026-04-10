@@ -570,8 +570,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1307993280}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_TargetAssemblyTypeName: BackToMenu, Assembly-CSharp
+        m_MethodName: BackMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1772,7 +1772,7 @@ GameObject:
   - component: {fileID: 1307993279}
   - component: {fileID: 1307993280}
   m_Layer: 0
-  m_Name: MenuManager
+  m_Name: CreditsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1802,9 +1802,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1307993278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08fdb407848358c4a8ad2af65c9218a5, type: 3}
+  m_Script: {fileID: 11500000, guid: eeeac3ea78823ac49aed5e6baeb27446, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuManager
+  m_EditorClassIdentifier: Assembly-CSharp::BackToMenu
 --- !u!1 &1309498115
 GameObject:
   m_ObjectHideFlags: 0
