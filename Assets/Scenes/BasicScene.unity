@@ -3381,7 +3381,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UFO
   routeFather: {fileID: 1136993071}
+  recoger: 0
   volver: 0
+  min: {x: 17, y: 0, z: 17}
+  max: {x: 100, y: 0, z: 100}
   pitcher: {fileID: 1110914770}
 --- !u!195 &1830603380
 NavMeshAgent:
