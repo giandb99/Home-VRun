@@ -1555,9 +1555,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba91508c8d3b0248b5035e19360284e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallFIring
-  bolaPrefab: {fileID: 2730425305886428725, guid: d50552f044d45d04595774e6838eeb34, type: 3}
+  ballPrefab: {fileID: 2730425305886428725, guid: d50552f044d45d04595774e6838eeb34, type: 3}
   spawnPoint: {fileID: 1803836101}
-  intervalo: 5
+  interval: 5
 --- !u!1 &1116397567
 GameObject:
   m_ObjectHideFlags: 0
