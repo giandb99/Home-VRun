@@ -12,7 +12,7 @@ public class UFO : MonoBehaviour
     Vector3 destination;
     public Vector3 min, max;
     [SerializeField] GameObject pitcher;
-
+    [SerializeField] ParticleSystem abduct, expell;
     private void Start()
     {
         volver = false;
@@ -28,11 +28,13 @@ public class UFO : MonoBehaviour
             if (volver)
             {
                 volver = false;
+                expell.Play();
                 StartCoroutine(Refill());
             }
             if (recoger)
             {
                 recoger = false;
+                abduct.Play();
                 StartCoroutine(Abduction());
             }
         }
