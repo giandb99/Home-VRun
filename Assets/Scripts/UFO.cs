@@ -80,7 +80,7 @@ public class UFO : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, destination) < 2.5f)
             {
-                yield return new WaitForSeconds(Random.Range(1f, 3f));
+                yield return new WaitForSeconds(Random.Range(0.1f, 1f));
                 RandomDestination();
             }
             yield return new WaitForEndOfFrame();
