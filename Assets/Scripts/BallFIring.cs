@@ -7,6 +7,7 @@ public class BallFIring : MonoBehaviour
     public GameObject ballPrefab;
     public Transform spawnPoint;
     public float interval = 2f;
+    public Transform routeFather;
 
     void Start()
     {
@@ -31,11 +32,16 @@ public class BallFIring : MonoBehaviour
 
         if (force >= 1900)
         {
-            direction = spawnPoint.forward;
+            direction = spawnPoint.forward + Vector3.up * 0.09f;
+            rb.AddForce(direction * force);
         }
-        
-        Debug.Log("Fuerza de disparo: "+force);
-        rb.AddForce(direction.normalized * force);
+        else
+        {
+            rb.AddForce(direction.normalized * force);
+        }
+
+        Debug.Log("Fuerza de disparo: " + force);
+        ball.transform.SetParent(routeFather);
     }
 
     public float RandomForece()
