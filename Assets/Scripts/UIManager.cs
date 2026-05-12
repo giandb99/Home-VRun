@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 
     public int maxTime = 15;
     private float actualTime;
+    private bool isLoadingScene = false;
 
     public static UIManager instance; 
 
@@ -37,6 +38,8 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isLoadingScene) return;
+
         if (actualTime > 0)
         {
             if (actualTime <= 10)
@@ -47,6 +50,7 @@ public class UIManager : MonoBehaviour
             timeText.text = Mathf.Ceil(actualTime).ToString();
         }else
         {
+            isLoadingScene = true;
             Debug.Log("TIME OVER");
             LoadEndScene();
         }
