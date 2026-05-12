@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Anchor
   - Ball
+  - Field
+  - Homerun
+  - Pickup
   layers:
   - Default
   - TransparentFX

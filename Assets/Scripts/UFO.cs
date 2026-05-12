@@ -50,15 +50,18 @@ public class UFO : MonoBehaviour
         else
         {
             Destroy(routeFather.GetChild(0).gameObject);
-            destination = new Vector3(pitcher.transform.position.x, transform.position.y, pitcher.transform.position.z);
-            volver = true;
-            GetComponent<NavMeshAgent>().SetDestination(destination);
+            if (routeFather.GetChild(0).tag == "Pickup")
+            {
+                destination = new Vector3(pitcher.transform.position.x, transform.position.y, pitcher.transform.position.z);
+                volver = true;
+                GetComponent<NavMeshAgent>().SetDestination(destination);
+            }
         }
     }
     private IEnumerator Refill()
     {
         yield return new WaitForSeconds(1f);
-        if (routeFather.childCount > 0)
+        if (routeFather.childCount > 0 && routeFather.GetChild(0).tag=="Pickup")
         {
             destination = new Vector3(routeFather.GetChild(0).position.x, transform.position.y, routeFather.GetChild(0).position.z);
             GetComponent<NavMeshAgent>().SetDestination(destination);
@@ -76,12 +79,21 @@ public class UFO : MonoBehaviour
     }
     IEnumerator Patrol()
     {
-        while (true)
+        while (!recoger)
         {
             if (Vector3.Distance(transform.position, destination) < 2.5f)
             {
                 yield return new WaitForSeconds(Random.Range(0.1f, 1f));
-                RandomDestination();
+                if (routeFather.childCount > 0 && routeFather.GetChild(0).tag == "Pickup")
+                {
+                    destination = new Vector3(routeFather.GetChild(0).position.x, transform.position.y, routeFather.GetChild(0).position.z);
+                    GetComponent<NavMeshAgent>().SetDestination(destination);
+                    recoger = true;
+                }
+                else
+                {
+                    RandomDestination();
+                }
             }
             yield return new WaitForEndOfFrame();
         }

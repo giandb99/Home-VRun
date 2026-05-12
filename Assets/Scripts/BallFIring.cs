@@ -24,7 +24,6 @@ public class BallFIring : MonoBehaviour
     {
         GameObject ball = Instantiate(ballPrefab, spawnPoint.position, spawnPoint.rotation);
         Rigidbody rb = ball.GetComponent<Rigidbody>();
-        
         ball.transform.SetParent(null);
 
         float force = RandomForece();
@@ -40,13 +39,15 @@ public class BallFIring : MonoBehaviour
             rb.AddForce(direction.normalized * force);
         }
 
-        Debug.Log("Fuerza de disparo: " + force);
+        //Debug.Log("Fuerza de disparo: " + force);
+        //Debug.Log("Direccion disparo: " + direction);
+        //Debug.Log("Fuerza pelota: " + direction*force);
         ball.transform.SetParent(routeFather);
     }
 
     public float RandomForece()
     {
-        float randomForce = Random.Range(1500f, 2000f);
+        float randomForce = Random.Range(1850f, 2000f);
 
         return randomForce;
     }

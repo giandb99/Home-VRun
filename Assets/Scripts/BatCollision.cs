@@ -11,17 +11,18 @@ public class BatCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        print(GetComponent<Rigidbody>().linearVelocity);
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ball"))
+        if (collision.collider.CompareTag("Ball"))
         {
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+            Rigidbody rb = collision.collider.GetComponent<Rigidbody>();
 
             Vector3 velocidadBate = GetComponent<Rigidbody>().linearVelocity;
-            rb.AddForce(velocidadBate * 2f, ForceMode.Impulse);
+            rb.AddForce(new Vector3(2000f,250f,2000f)+velocidadBate);
+            print(rb.linearVelocity);
         }
     }
 }
