@@ -9,6 +9,7 @@ TagManager:
   - Field
   - Homerun
   - Pickup
+  - Bat
   layers:
   - Default
   - TransparentFX
