@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         AudioManager.instance.StopMusic();
-        AudioManager.instance.PlaySFX("Playball");
+        AudioManager.instance.PlaySFX2("Playball");
         StartCoroutine(WaitForMusicToPlay());
     }
 

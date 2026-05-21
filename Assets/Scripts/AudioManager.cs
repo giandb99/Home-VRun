@@ -7,9 +7,11 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource sfxSource;
     public AudioSource musicSource; 
+    public AudioSource sfxSource2; 
 
    
     public Dictionary<string, AudioClip> sfxClips = new Dictionary<string, AudioClip>();
+    public Dictionary<string, AudioClip> sfxClips2 = new Dictionary<string, AudioClip>();
     public Dictionary<string, AudioClip> musicClips = new Dictionary<string, AudioClip>();
 
     
@@ -22,16 +24,21 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         LoadSFXClips();
+        LoadSFXClips2();
         LoadMusicClips();
     }
 
     private void LoadSFXClips()
     {
-        sfxClips["Playball"] = Resources.Load<AudioClip>("SFX/Playball");
         sfxClips["ButtonClick"] = Resources.Load<AudioClip>("SFX/Button-click");
-        sfxClips["Homerun"] = Resources.Load<AudioClip>("SFX/Homerun");
         sfxClips["NaveAbsorver"] = Resources.Load<AudioClip>("SFX/Nave-absorver");
         sfxClips["BatHit"] = Resources.Load<AudioClip>("SFX/Bat-hit");
+    }
+
+    private void LoadSFXClips2()
+    {
+        sfxClips2["Playball"] = Resources.Load<AudioClip>("SFX/Playball");
+        sfxClips2["Homerun"] = Resources.Load<AudioClip>("SFX/Homerun");
     }
 
     private void LoadMusicClips()
@@ -46,6 +53,16 @@ public class AudioManager : MonoBehaviour
         {
             sfxSource.clip = sfxClips[clipName];
             sfxSource.Play();
+        }
+        else Debug.LogWarning("El AudioClip " + clipName + " no se encontro en el diccionario de sfxClips.");
+    }
+
+    public void PlaySFX2(string clipName)
+    {
+        if (sfxClips2.ContainsKey(clipName))
+        {
+            sfxSource2.clip = sfxClips2[clipName];
+            sfxSource2.Play();
         }
         else Debug.LogWarning("El AudioClip " + clipName + " no se encontro en el diccionario de sfxClips.");
     }
