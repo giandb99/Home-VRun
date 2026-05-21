@@ -35,6 +35,7 @@ public class UFO : MonoBehaviour
             {
                 recoger = false;
                 abduct.Play();
+                AudioManager.instance.PlaySFX("NaveAbsorver");
                 StartCoroutine(Abduction());
             }
         }
