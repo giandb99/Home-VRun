@@ -1,15 +1,15 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Threading;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    public TMP_Text timeText;
-    public TMP_Text scoreText;
-    public int score = 100;
-
-    public int maxTime = 150;
-    private float actualTime;
+    TMP_Text timeText;
+    TMP_Text scoreText;
+    public int score;
+    public int actualTime;
     private bool isLoadingScene = false;
 
     public static UIManager instance; 
@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -30,34 +31,42 @@ public class UIManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        timeText.text = maxTime.ToString();
-        actualTime = maxTime;
-        scoreText.text = score.ToString();
+        
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(maxTime);
-        if (isLoadingScene) return;
 
-        if (actualTime > 0)
+    public IEnumerator time()
+    {
+        timeText.text = Mathf.Ceil(actualTime).ToString();
+        yield return new WaitForSeconds(1f);
+        actualTime--;
+        if(actualTime != 0)
         {
             if (actualTime <= 10)
             {
                 timeText.color = Color.red;
             }
-            actualTime -= Time.deltaTime;
-            timeText.text = Mathf.Ceil(actualTime).ToString();
-        }else
+            StartCoroutine(time());
+        }
+        else
         {
-            isLoadingScene = true;
-            Debug.Log("TIME OVER");
             LoadEndScene();
         }
-        
     }
-
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name.Equals("BasicScene"))
+        {
+            actualTime = 60;
+            score = 0;
+            timeText = GameObject.Find("Timer").GetComponent<TMP_Text>();
+            scoreText = GameObject.Find("Score").GetComponent<TMP_Text>();
+            timeText.text = actualTime.ToString();
+            scoreText.text = score.ToString();
+            StartCoroutine(time());
+        }
+    }
     public void LoadEndScene()
     {
         SceneManager.LoadScene("EndScene");
