@@ -18,6 +18,7 @@ public class BatCollision : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ball"))
         {
+            AudioManager.instance.PlaySFX("BatHit");
             Rigidbody rb = collision.collider.GetComponent<Rigidbody>();
 
             Vector3 velocidadBate = GetComponent<Rigidbody>().linearVelocity;

@@ -36,12 +36,8 @@ public class AudioManager : MonoBehaviour
 
     private void LoadMusicClips()
     {
-        musicClips["BackgroundMusic1"] = Resources.Load<AudioClip>("Music/BackgroundMusic_1");
-        musicClips["BackgroundMusic2"] = Resources.Load<AudioClip>("Music/BackgroundMusic_2");
-        musicClips["BackgroundMusic3"] = Resources.Load<AudioClip>("Music/BackgroundMusic_3");
-        musicClips["BackgroundMusic4"] = Resources.Load<AudioClip>("Music/BackgroundMusic_4");
-        musicClips["BackgroundMusic5"] = Resources.Load<AudioClip>("Music/BackgroundMusic_5");
-
+        musicClips["GameplayTheme"] = Resources.Load<AudioClip>("Music/GameplayTheme");
+        musicClips["MenuTheme"] = Resources.Load<AudioClip>("Music/MenuTheme");
     }
 
     public void PlaySFX(string clipName)
