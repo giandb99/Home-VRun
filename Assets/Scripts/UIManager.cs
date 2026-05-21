@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text scoreText;
     public int score = 100;
 
-    public int maxTime = 15;
+    public int maxTime = 150;
     private float actualTime;
     private bool isLoadingScene = false;
 
@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(maxTime);
         if (isLoadingScene) return;
 
         if (actualTime > 0)
@@ -60,5 +61,9 @@ public class UIManager : MonoBehaviour
     public void LoadEndScene()
     {
         SceneManager.LoadScene("EndScene");
+    }
+    public void SetScore()
+    {
+        scoreText.text = score.ToString();
     }
 }
