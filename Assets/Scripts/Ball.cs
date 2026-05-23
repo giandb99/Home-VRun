@@ -29,6 +29,7 @@ public class Ball : MonoBehaviour
         {
             tag = "Pickup";
             manager.score+=2;
+            AudioManager.instance.PlaySFX2("Homerun");
             manager.SetScore();
         }
     }
