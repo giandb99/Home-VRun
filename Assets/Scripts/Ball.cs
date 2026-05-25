@@ -36,13 +36,9 @@ public class Ball : MonoBehaviour
         if (collision.collider.CompareTag("Homerun") && hit)
         {
             tag = "Pickup";
-<<<<<<< Updated upstream
-            manager.score+=2;
-=======
             manager.score += 2;
             AudioManager.instance.PlaySFX2("Homerun");
             distanceText.text = "¡¡¡HOME RUN!!!";
->>>>>>> Stashed changes
             manager.SetScore();
         }
     }
