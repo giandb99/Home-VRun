@@ -10,7 +10,6 @@ public class UIManager : MonoBehaviour
     TMP_Text scoreText;
     public int score;
     public int actualTime;
-    private bool isLoadingScene = false;
 
     public static UIManager instance; 
 
