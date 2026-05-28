@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -5,25 +6,37 @@ public class BallFIring : MonoBehaviour
 {
 
     public GameObject ballPrefab;
+    public GameObject goldenBallPrefab;
     public Transform spawnPoint;
     public float interval = 2f;
     public Transform routeFather;
 
     void Start()
     {
-        InvokeRepeating("Shoot", 0f, interval); 
+        StartCoroutine(esperar());
     }
 
-    // Update is called once per frame
-    void Update()
+    public IEnumerator esperar()
     {
-        
+        yield return new WaitForSeconds(1f);
+        InvokeRepeating("Shoot", 0f, interval);
     }
 
     public void Shoot()
     {
-        GameObject ball = Instantiate(ballPrefab, spawnPoint.position, spawnPoint.rotation);
-        Rigidbody rb = ball.GetComponent<Rigidbody>();
+        int value = Random.Range(0, 4);
+        GameObject ball;
+        Rigidbody rb;
+        if (value == 0)
+        {
+            ball = Instantiate(goldenBallPrefab, spawnPoint.position, spawnPoint.rotation);
+            rb = ball.GetComponent<Rigidbody>();
+        }
+        else
+        {
+            ball = Instantiate(ballPrefab, spawnPoint.position, spawnPoint.rotation);
+            rb = ball.GetComponent<Rigidbody>();
+        }
         ball.transform.SetParent(null);
 
         float force = RandomForece();
@@ -38,10 +51,6 @@ public class BallFIring : MonoBehaviour
         {
             rb.AddForce(direction.normalized * force);
         }
-
-        //Debug.Log("Fuerza de disparo: " + force);
-        //Debug.Log("Direccion disparo: " + direction);
-        //Debug.Log("Fuerza pelota: " + direction*force);
         ball.transform.SetParent(routeFather);
     }
 

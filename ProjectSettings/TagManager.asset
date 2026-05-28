@@ -10,6 +10,8 @@ TagManager:
   - Homerun
   - Pickup
   - Bat
+  - GoldenBall
+  - Limit
   layers:
   - Default
   - TransparentFX

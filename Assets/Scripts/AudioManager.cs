@@ -8,10 +8,11 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxSource;
     public AudioSource musicSource; 
     public AudioSource sfxSource2; 
-
+    public AudioSource sfxUFO; 
    
     public Dictionary<string, AudioClip> sfxClips = new Dictionary<string, AudioClip>();
     public Dictionary<string, AudioClip> sfxClips2 = new Dictionary<string, AudioClip>();
+    public Dictionary<string, AudioClip> sfxUFOClips = new Dictionary<string, AudioClip>();
     public Dictionary<string, AudioClip> musicClips = new Dictionary<string, AudioClip>();
 
     
@@ -25,13 +26,13 @@ public class AudioManager : MonoBehaviour
 
         LoadSFXClips();
         LoadSFXClips2();
+        LoadSFXCUFO();
         LoadMusicClips();
     }
 
     private void LoadSFXClips()
     {
         sfxClips["ButtonClick"] = Resources.Load<AudioClip>("SFX/Button-click");
-        sfxClips["NaveAbsorver"] = Resources.Load<AudioClip>("SFX/Nave-absorver");
         sfxClips["BatHit"] = Resources.Load<AudioClip>("SFX/Bat-hit");
     }
 
@@ -39,6 +40,10 @@ public class AudioManager : MonoBehaviour
     {
         sfxClips2["Playball"] = Resources.Load<AudioClip>("SFX/Playball");
         sfxClips2["Homerun"] = Resources.Load<AudioClip>("SFX/Homerun");
+    }
+    private void LoadSFXCUFO()
+    {
+        sfxUFOClips["NaveAbsorver"] = Resources.Load<AudioClip>("SFX/Nave-absorver");
     }
 
     private void LoadMusicClips()
@@ -63,6 +68,15 @@ public class AudioManager : MonoBehaviour
         {
             sfxSource2.clip = sfxClips2[clipName];
             sfxSource2.Play();
+        }
+        else Debug.LogWarning("El AudioClip " + clipName + " no se encontro en el diccionario de sfxClips.");
+    }
+    public void PlaySFXUFO(string clipName)
+    {
+        if (sfxUFOClips.ContainsKey(clipName))
+        {
+            sfxUFO.clip = sfxUFOClips[clipName];
+            sfxUFO.Play();
         }
         else Debug.LogWarning("El AudioClip " + clipName + " no se encontro en el diccionario de sfxClips.");
     }
@@ -99,6 +113,16 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.Stop();
         sfxSource.clip = null;
+    }
+    public void StopSFX2()
+    {
+        sfxSource2.Stop();
+        sfxSource2.clip = null;
+    }
+    public void StopSFXUFO()
+    {
+        sfxUFO.Stop();
+        sfxUFO.clip = null;
     }
 
 }

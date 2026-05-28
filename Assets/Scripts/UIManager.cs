@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 {
     TMP_Text timeText;
     TMP_Text scoreText;
-    public int score;
+    public int score, racha;
     public int actualTime;
 
     public static UIManager instance; 
@@ -37,13 +37,18 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator time()
     {
-        timeText.text = Mathf.Ceil(actualTime).ToString();
         yield return new WaitForSeconds(1f);
+        if (actualTime == 60)
+        {
+            timeText.text = "01:00";
+        }
+        timeText.text = "00:"+actualTime;
         actualTime--;
         if(actualTime != 0)
         {
-            if (actualTime <= 10)
+            if (actualTime < 10)
             {
+                timeText.text = "00:0" + actualTime;
                 timeText.color = Color.red;
             }
             StartCoroutine(time());
@@ -59,10 +64,12 @@ public class UIManager : MonoBehaviour
         {
             actualTime = 60;
             score = 0;
+            racha = 0;
             timeText = GameObject.Find("Timer").GetComponent<TMP_Text>();
             scoreText = GameObject.Find("Score").GetComponent<TMP_Text>();
-            timeText.text = actualTime.ToString();
+            timeText.text = "01:00";
             scoreText.text = score.ToString();
+            SetScore();
             StartCoroutine(time());
         }
     }
@@ -72,6 +79,6 @@ public class UIManager : MonoBehaviour
     }
     public void SetScore()
     {
-        scoreText.text = score.ToString();
+        scoreText.text = "Puntos: "+score+"\nRacha: "+racha;
     }
 }

@@ -35,7 +35,7 @@ public class UFO : MonoBehaviour
             {
                 recoger = false;
                 abduct.Play();
-                AudioManager.instance.PlaySFX("NaveAbsorver");
+                AudioManager.instance.PlaySFXUFO("NaveAbsorver");
                 StartCoroutine(Abduction());
             }
         }
@@ -62,7 +62,7 @@ public class UFO : MonoBehaviour
     private IEnumerator Refill()
     {
         yield return new WaitForSeconds(1f);
-        if (routeFather.childCount > 0 && routeFather.GetChild(0).tag=="Pickup")
+        if (routeFather.childCount > 0 && routeFather.GetChild(0).tag == "Pickup")
         {
             destination = new Vector3(routeFather.GetChild(0).position.x, transform.position.y, routeFather.GetChild(0).position.z);
             GetComponent<NavMeshAgent>().SetDestination(destination);
